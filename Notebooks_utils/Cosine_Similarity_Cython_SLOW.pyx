@@ -182,7 +182,7 @@ cdef class Cosine_Similarity:
 
             W_sparse = sps.csr_matrix((values, (rows, cols)),
                                     shape=(self.n_items, self.n_items),
-                                    dtype=float32)
+                                    dtype=np.float32)
 
             return W_sparse
 

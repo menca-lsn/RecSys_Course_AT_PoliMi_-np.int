@@ -65,7 +65,7 @@ def _sps_to_coo_tensor(URM_train, device):
     URM_train = sps.coo_matrix(URM_train)
     return torch.sparse_coo_tensor(np.array([URM_train.row, URM_train.col]),
                                    URM_train.data,
-                                   URM_train.shape, dtype=torch.float32, device=device)
+                                   URM_train.shape, dtype=torch.np.float32, device=device)
 
 
 def clone_pytorch_model_to_numpy_dict(model):

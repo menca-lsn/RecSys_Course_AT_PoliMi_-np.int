@@ -1031,15 +1031,15 @@ typedef npy_uint64 __pyx_t_5numpy_uint64_t;
 /* "../../../../../anaconda3/lib/python3.6/site-packages/Cython/Includes/numpy/__init__.pxd":790
  * #ctypedef npy_uint128    uint128_t
  * 
- * ctypedef npy_float32    float32_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_np.float32    np.float32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_float64    float64_t
  * #ctypedef npy_float80    float80_t
  */
-typedef npy_float32 __pyx_t_5numpy_float32_t;
+typedef npy_np.float32 __pyx_t_5numpy_np.float32_t;
 
 /* "../../../../../anaconda3/lib/python3.6/site-packages/Cython/Includes/numpy/__init__.pxd":791
  * 
- * ctypedef npy_float32    float32_t
+ * ctypedef npy_np.float32    np.float32_t
  * ctypedef npy_float64    float64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_float80    float80_t
  * #ctypedef npy_float128   float128_t
@@ -2445,7 +2445,7 @@ static const char __pyx_k_struct[] = "struct";
 static const char __pyx_k_unpack[] = "unpack";
 static const char __pyx_k_update[] = "update";
 static const char __pyx_k_argsort[] = "argsort";
-static const char __pyx_k_float32[] = "float32";
+static const char __pyx_k_np.float32[] = "np.float32";
 static const char __pyx_k_float64[] = "float64";
 static const char __pyx_k_fortran[] = "fortran";
 static const char __pyx_k_indices[] = "indices";
@@ -2576,7 +2576,7 @@ static PyObject *__pyx_n_s_enumerate;
 static PyObject *__pyx_n_s_error;
 static PyObject *__pyx_n_s_file;
 static PyObject *__pyx_n_s_flags;
-static PyObject *__pyx_n_s_float32;
+static PyObject *__pyx_n_s_np.float32;
 static PyObject *__pyx_n_s_float64;
 static PyObject *__pyx_n_s_format;
 static PyObject *__pyx_n_s_fortran;
@@ -4842,7 +4842,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
  * 
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),             # <<<<<<<<<<<<<<
  *                                     shape=(self.n_items, self.n_items),
- *                                     dtype=float32)
+ *                                     dtype=np.float32)
  */
     __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sps); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -4881,7 +4881,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
  * 
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),
  *                                     shape=(self.n_items, self.n_items),             # <<<<<<<<<<<<<<
- *                                     dtype=float32)
+ *                                     dtype=np.float32)
  * 
  */
     __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L1_error)
@@ -4904,13 +4904,13 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
     /* "Cosine_Similarity_Cython.pyx":216
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),
  *                                     shape=(self.n_items, self.n_items),
- *                                     dtype=float32)             # <<<<<<<<<<<<<<
+ *                                     dtype=np.float32)             # <<<<<<<<<<<<<<
  * 
  *             return W_sparse
  */
     __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_float32); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 216, __pyx_L1_error)
+    __pyx_t_16 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_np.float32); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 216, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_16);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_dtype, __pyx_t_16) < 0) __PYX_ERR(0, 215, __pyx_L1_error)
@@ -4921,7 +4921,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
  * 
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),             # <<<<<<<<<<<<<<
  *                                     shape=(self.n_items, self.n_items),
- *                                     dtype=float32)
+ *                                     dtype=np.float32)
  */
     __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_16);
@@ -4932,7 +4932,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
     __pyx_t_16 = 0;
 
     /* "Cosine_Similarity_Cython.pyx":218
- *                                     dtype=float32)
+ *                                     dtype=np.float32)
  * 
  *             return W_sparse             # <<<<<<<<<<<<<<
  * 
@@ -22542,7 +22542,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_error, __pyx_k_error, sizeof(__pyx_k_error), 0, 0, 1, 1},
   {&__pyx_n_s_file, __pyx_k_file, sizeof(__pyx_k_file), 0, 0, 1, 1},
   {&__pyx_n_s_flags, __pyx_k_flags, sizeof(__pyx_k_flags), 0, 0, 1, 1},
-  {&__pyx_n_s_float32, __pyx_k_float32, sizeof(__pyx_k_float32), 0, 0, 1, 1},
+  {&__pyx_n_s_np.float32, __pyx_k_np.float32, sizeof(__pyx_k_np.float32), 0, 0, 1, 1},
   {&__pyx_n_s_float64, __pyx_k_float64, sizeof(__pyx_k_float64), 0, 0, 1, 1},
   {&__pyx_n_s_format, __pyx_k_format, sizeof(__pyx_k_format), 0, 0, 1, 1},
   {&__pyx_n_s_fortran, __pyx_k_fortran, sizeof(__pyx_k_fortran), 0, 0, 1, 1},

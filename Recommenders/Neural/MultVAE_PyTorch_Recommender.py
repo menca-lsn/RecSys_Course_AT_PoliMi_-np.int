@@ -26,7 +26,7 @@ def from_sparse_to_tensor(A_tilde):
     return A_tilde
 
 
-torch.set_default_dtype(torch.float32)
+torch.set_default_dtype(torch.np.float32)
 
 class _Encoder(torch.nn.Module):
 
@@ -168,7 +168,7 @@ class MultVAERecommender_PyTorch(BaseRecommender, Incremental_Training_Early_Sto
         user_batch_tensor = torch.sparse_csr_tensor(user_batch_tensor.indptr,
                                                     user_batch_tensor.indices,
                                                     user_batch_tensor.data,
-                                                    size=user_batch_tensor.shape, dtype=torch.float32,
+                                                    size=user_batch_tensor.shape, dtype=torch.np.float32,
                                                     device=self.device, requires_grad=False).to_dense()
 
         with torch.no_grad():
@@ -285,7 +285,7 @@ class MultVAERecommender_PyTorch(BaseRecommender, Incremental_Training_Early_Sto
             user_batch_tensor = torch.sparse_csr_tensor(user_batch_tensor.indptr,
                                                         user_batch_tensor.indices,
                                                         user_batch_tensor.data,
-                                                        size=user_batch_tensor.shape, dtype=torch.float32, device=self.device, requires_grad=False).to_dense()
+                                                        size=user_batch_tensor.shape, dtype=torch.np.float32, device=self.device, requires_grad=False).to_dense()
 
             logits, KL, mu_q, std_q, epsilon, sampled_z = self._model.forward(user_batch_tensor)
 

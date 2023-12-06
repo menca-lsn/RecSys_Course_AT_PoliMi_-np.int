@@ -124,7 +124,7 @@ cdef class SLIM_BPR_Cython_Epoch:
         elif self.symmetric:
             self.S_symmetric = Triangular_Matrix(self.n_items, isSymmetric = True)
         else:
-            self.S_dense = np.zeros((self.n_items, self.n_items), dtype=float32)
+            self.S_dense = np.zeros((self.n_items, self.n_items), dtype=np.float32)
 
         if random_seed is not None:
             srand(<unsigned> random_seed)
@@ -172,11 +172,11 @@ cdef class SLIM_BPR_Cython_Epoch:
         else:
 
             # Adagrad and RMSProp
-            self.sgd_cache_I = np.zeros((self.n_items), dtype=float32)
+            self.sgd_cache_I = np.zeros((self.n_items), dtype=np.float32)
 
             # Adam
-            self.sgd_cache_I_momentum_1 = np.zeros((self.n_items), dtype=float32)
-            self.sgd_cache_I_momentum_2 = np.zeros((self.n_items), dtype=float32)
+            self.sgd_cache_I_momentum_1 = np.zeros((self.n_items), dtype=np.float32)
+            self.sgd_cache_I_momentum_2 = np.zeros((self.n_items), dtype=np.float32)
 
 
 
@@ -369,7 +369,7 @@ cdef class SLIM_BPR_Cython_Epoch:
                 if self.final_model_sparse_weights:
                     return similarityMatrixTopK(np.array(self.S_dense.T), k=self.topK).T
                 else:
-                    return np.array(self.S_dense, dtype=float32)
+                    return np.array(self.S_dense, dtype=np.float32)
 
 
         else:
@@ -384,7 +384,7 @@ cdef class SLIM_BPR_Cython_Epoch:
                 if self.final_model_sparse_weights:
                     return similarityMatrixTopK(np.array(self.S_dense.T), k=self.topK).T
                 else:
-                    return np.array(self.S_dense, dtype=float32)
+                    return np.array(self.S_dense, dtype=np.float32)
 
 
 
@@ -1353,7 +1353,7 @@ cdef class Triangular_Matrix:
 
         # Declare numpy data type to use vetor indexing and simplify the topK selection code
         cdef np.ndarray[LONG_t, ndim=1] relevant_items_partition
-        cdef np.ndarray[float32_t, ndim=1] currentRowArray_np
+        cdef np.ndarray[np.float32_t, ndim=1] currentRowArray_np
 
 
         data = []
@@ -1406,7 +1406,7 @@ cdef class Triangular_Matrix:
         #Set terminal indptr
         indptr.append(len(data))
 
-        return sps.csr_matrix((data, indices, indptr), shape=(self.num_rows, self.num_cols), dtype=float32)
+        return sps.csr_matrix((data, indices, indptr), shape=(self.num_rows, self.num_cols), dtype=np.float32)
 
 
 

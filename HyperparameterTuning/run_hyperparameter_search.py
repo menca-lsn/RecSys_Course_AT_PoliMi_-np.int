@@ -1037,7 +1037,7 @@ def runHyperparameterSearch_Collaborative(recommender_class, URM_train, URM_trai
                 "max_n_hidden_layers": Integer(1, 4),
 
                 # Constrain the model to a maximum number of parameters so that its size does not exceed 7 GB
-                # Estimate size by considering each parameter uses float32
+                # Estimate size by considering each parameter uses np.float32
                 "max_parameters": Categorical([7*1e9*8/32]),
             }
 

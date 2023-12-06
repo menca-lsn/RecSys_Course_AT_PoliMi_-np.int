@@ -586,6 +586,6 @@ cdef class Compute_Similarity_Cython:
 
             W_sparse = sps.csr_matrix((values, (rows, cols)),
                                     shape=(self.n_columns, self.n_columns),
-                                    dtype=float32)
+                                    dtype=np.float32)
 
             return W_sparse

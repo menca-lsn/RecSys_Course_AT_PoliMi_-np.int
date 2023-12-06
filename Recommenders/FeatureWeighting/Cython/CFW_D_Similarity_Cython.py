@@ -131,12 +131,12 @@ class CFW_D_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixRe
             weights_initialization_D = np.zeros(self.n_features, dtype=float64)
         elif initialization_mode_D == "BM25":
             weights_initialization_D = np.ones(self.n_features, dtype=float64)
-            self.ICM = self.ICM.astype(float32)
+            self.ICM = self.ICM.astype(np.float32)
             self.ICM = okapi_BM_25(self.ICM)
 
         elif initialization_mode_D == "TF-IDF":
             weights_initialization_D = np.ones(self.n_features, dtype=float64)
-            self.ICM = self.ICM.astype(float32)
+            self.ICM = self.ICM.astype(np.float32)
             self.ICM = TF_IDF(self.ICM)
 
         else:

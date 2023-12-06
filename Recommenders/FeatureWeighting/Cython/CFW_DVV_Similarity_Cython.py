@@ -93,12 +93,12 @@ class CFW_DVV_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrix
             weights_initialization_D = np.zeros(self.n_features, dtype=float64)
         elif initialization_mode_D == "BM25":
             weights_initialization_D = np.ones(self.n_features, dtype=float64)
-            self.ICM = self.ICM.astype(float32)
+            self.ICM = self.ICM.astype(np.float32)
             self.ICM = okapi_BM_25(self.ICM)
 
         elif initialization_mode_D == "TF-IDF":
             weights_initialization_D = np.ones(self.n_features, dtype=float64)
-            self.ICM = self.ICM.astype(float32)
+            self.ICM = self.ICM.astype(np.float32)
             self.ICM = TF_IDF(self.ICM)
 
         else:
@@ -312,7 +312,7 @@ class CFW_DVV_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrix
             # Use array as it reduces memory requirements compared to lists
             dataBlock = 10000000
 
-            values = np.zeros(dataBlock, dtype=float32)
+            values = np.zeros(dataBlock, dtype=np.float32)
             rows = np.zeros(dataBlock, dtype=int32)
             cols = np.zeros(dataBlock, dtype=int32)
 
@@ -338,7 +338,7 @@ class CFW_DVV_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrix
                 for index in range(len(values_to_add)):
 
                     if numCells == len(rows):
-                        rows = np.concatenate((rows, np.zeros(dataBlock, dtype=float32)))
+                        rows = np.concatenate((rows, np.zeros(dataBlock, dtype=np.float32)))
                         cols = np.concatenate((cols, np.zeros(dataBlock, dtype=int32)))
                         values = np.concatenate((values, np.zeros(dataBlock, dtype=int32)))
 
@@ -364,7 +364,7 @@ class CFW_DVV_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrix
 
             V_weights = sps.csr_matrix((values[:numCells], (rows[:numCells], cols[:numCells])),
                               shape=(self.n_items, self.n_items),
-                              dtype=float32)
+                              dtype=np.float32)
 
             self.W_sparse += V_weights
             self.W_sparse = check_matrix(self.W_sparse, format='csr')

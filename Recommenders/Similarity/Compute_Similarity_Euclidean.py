@@ -90,7 +90,7 @@ class Compute_Similarity_Euclidean:
         """
 
 
-        similarity_builder = Incremental_Similarity_Builder(self.n_columns, initial_data_block=self.n_columns*self.topK, dtype = float32)
+        similarity_builder = Incremental_Similarity_Builder(self.n_columns, initial_data_block=self.n_columns*self.topK, dtype = np.float32)
 
         start_time = time.time()
         start_time_print_batch = start_time

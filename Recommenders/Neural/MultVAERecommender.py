@@ -43,7 +43,7 @@ class _MultDAE_original(object):
 
     def construct_placeholders(self):
         self.input_ph = tf.compat.v1.placeholder(
-            dtype=tf.float32, shape=[None, self.dims[0]])
+            dtype=tf.np.float32, shape=[None, self.dims[0]])
         self.keep_prob_ph = tf.compat.v1.placeholder_with_default(1.0, shape=None)
 
     def build_graph(self):
@@ -250,7 +250,7 @@ class MultVAERecommender(BaseRecommender, Incremental_Training_Early_Stopping, B
         if sparse.isspmatrix(URM_train_user_slice):
             URM_train_user_slice = URM_train_user_slice.toarray()
 
-        URM_train_user_slice = URM_train_user_slice.astype('float32')
+        URM_train_user_slice = URM_train_user_slice.astype('np.float32')
 
         item_scores_to_compute = self.sess.run(self.logits_var, feed_dict={self.vae.input_ph: URM_train_user_slice})
 
@@ -357,7 +357,7 @@ class MultVAERecommender(BaseRecommender, Incremental_Training_Early_Stopping, B
 
             if sparse.isspmatrix(X):
                 X = X.toarray()
-            X = X.astype('float32')
+            X = X.astype('np.float32')
 
             if self.total_anneal_steps > 0:
                 anneal = min(self.anneal_cap, 1. * self.update_count / self.total_anneal_steps)
