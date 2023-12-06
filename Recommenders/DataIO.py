@@ -22,7 +22,7 @@ def json_not_serializable_handler(o):
     :return:
     """
 
-    if isinstance(o, np.integer):
+    if isinstance(o, integer):
         return int(o)
 
     if isinstance(o, np.bool_):
