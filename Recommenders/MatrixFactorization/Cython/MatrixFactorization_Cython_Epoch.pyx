@@ -148,7 +148,7 @@ cdef class MatrixFactorization_Cython_Epoch:
         self.WARP_neg_item_attempts = WARP_neg_item_attempts
 
         self.URM_train_indices = URM_train.indices
-        self.URM_train_data = np.array(URM_train.data, dtype=float64)
+        self.URM_train_data = np.array(URM_train.data, dtype=np.float64)
         self.URM_train_indptr = URM_train.indptr
 
         if random_seed is not None:
@@ -203,25 +203,25 @@ cdef class MatrixFactorization_Cython_Epoch:
 
         if self.use_embeddings:
             # W and H cannot be initialized as zero, otherwise the gradient will always be zero
-            self.USER_factors = np.random.normal(self.init_mean, self.init_std_dev, (n_user_factors, self.n_factors)).astype(float64)
-            self.ITEM_factors = np.random.normal(self.init_mean, self.init_std_dev, (n_item_factors, self.n_factors)).astype(float64)
+            self.USER_factors = np.random.normal(self.init_mean, self.init_std_dev, (n_user_factors, self.n_factors)).astype(np.float64)
+            self.ITEM_factors = np.random.normal(self.init_mean, self.init_std_dev, (n_item_factors, self.n_factors)).astype(np.float64)
 
-            self.USER_factors_minibatch_accumulator = np.zeros((n_user_factors, self.n_factors), dtype=float64)
-            self.ITEM_factors_minibatch_accumulator = np.zeros((n_item_factors, self.n_factors), dtype=float64)
+            self.USER_factors_minibatch_accumulator = np.zeros((n_user_factors, self.n_factors), dtype=np.float64)
+            self.ITEM_factors_minibatch_accumulator = np.zeros((n_item_factors, self.n_factors), dtype=np.float64)
         else:
-            self.USER_factors = np.zeros((n_user_factors, self.n_factors)).astype(float64)
-            self.ITEM_factors = np.zeros((n_item_factors, self.n_factors)).astype(float64)
+            self.USER_factors = np.zeros((n_user_factors, self.n_factors)).astype(np.float64)
+            self.ITEM_factors = np.zeros((n_item_factors, self.n_factors)).astype(np.float64)
 
 
 
         if self.use_bias:
-            self.USER_bias = np.zeros(self.n_users, dtype=float64)
-            self.ITEM_bias = np.zeros(self.n_items, dtype=float64)
-            self.GLOBAL_bias = np.zeros(1, dtype=float64)
+            self.USER_bias = np.zeros(self.n_users, dtype=np.float64)
+            self.ITEM_bias = np.zeros(self.n_items, dtype=np.float64)
+            self.GLOBAL_bias = np.zeros(1, dtype=np.float64)
 
-            self.USER_bias_minibatch_accumulator = np.zeros(self.n_users, dtype=float64)
-            self.ITEM_bias_minibatch_accumulator = np.zeros(self.n_items, dtype=float64)
-            self.GLOBAL_bias_minibatch_accumulator = np.zeros(1, dtype=float64)
+            self.USER_bias_minibatch_accumulator = np.zeros(self.n_users, dtype=np.float64)
+            self.ITEM_bias_minibatch_accumulator = np.zeros(self.n_items, dtype=np.float64)
+            self.GLOBAL_bias_minibatch_accumulator = np.zeros(1, dtype=np.float64)
 
 
 
@@ -281,28 +281,28 @@ cdef class MatrixFactorization_Cython_Epoch:
         else:
 
             # Adagrad and RMSProp
-            self.sgd_cache_I = np.zeros((self.ITEM_factors.shape[0], self.n_factors), dtype=float64)
-            self.sgd_cache_U = np.zeros((self.USER_factors.shape[0], self.n_factors), dtype=float64)
+            self.sgd_cache_I = np.zeros((self.ITEM_factors.shape[0], self.n_factors), dtype=np.float64)
+            self.sgd_cache_U = np.zeros((self.USER_factors.shape[0], self.n_factors), dtype=np.float64)
 
-            self.sgd_cache_bias_I = np.zeros((self.n_items, 1), dtype=float64)
-            self.sgd_cache_bias_U = np.zeros((self.n_users, 1), dtype=float64)
-            self.sgd_cache_bias_GLOBAL = np.zeros((1, 1), dtype=float64)
+            self.sgd_cache_bias_I = np.zeros((self.n_items, 1), dtype=np.float64)
+            self.sgd_cache_bias_U = np.zeros((self.n_users, 1), dtype=np.float64)
+            self.sgd_cache_bias_GLOBAL = np.zeros((1, 1), dtype=np.float64)
 
             # Adam
-            self.sgd_cache_I_momentum_1 = np.zeros((self.ITEM_factors.shape[0], self.n_factors), dtype=float64)
-            self.sgd_cache_I_momentum_2 = np.zeros((self.ITEM_factors.shape[0], self.n_factors), dtype=float64)
+            self.sgd_cache_I_momentum_1 = np.zeros((self.ITEM_factors.shape[0], self.n_factors), dtype=np.float64)
+            self.sgd_cache_I_momentum_2 = np.zeros((self.ITEM_factors.shape[0], self.n_factors), dtype=np.float64)
 
-            self.sgd_cache_U_momentum_1 = np.zeros((self.USER_factors.shape[0], self.n_factors), dtype=float64)
-            self.sgd_cache_U_momentum_2 = np.zeros((self.USER_factors.shape[0], self.n_factors), dtype=float64)
+            self.sgd_cache_U_momentum_1 = np.zeros((self.USER_factors.shape[0], self.n_factors), dtype=np.float64)
+            self.sgd_cache_U_momentum_2 = np.zeros((self.USER_factors.shape[0], self.n_factors), dtype=np.float64)
 
-            self.sgd_cache_bias_I_momentum_1 = np.zeros((self.n_items, 1), dtype=float64)
-            self.sgd_cache_bias_I_momentum_2 = np.zeros((self.n_items, 1), dtype=float64)
+            self.sgd_cache_bias_I_momentum_1 = np.zeros((self.n_items, 1), dtype=np.float64)
+            self.sgd_cache_bias_I_momentum_2 = np.zeros((self.n_items, 1), dtype=np.float64)
 
-            self.sgd_cache_bias_U_momentum_1 = np.zeros((self.n_users, 1), dtype=float64)
-            self.sgd_cache_bias_U_momentum_2 = np.zeros((self.n_users, 1), dtype=float64)
+            self.sgd_cache_bias_U_momentum_1 = np.zeros((self.n_users, 1), dtype=np.float64)
+            self.sgd_cache_bias_U_momentum_2 = np.zeros((self.n_users, 1), dtype=np.float64)
 
-            self.sgd_cache_bias_GLOBAL_momentum_1 = np.zeros((1, 1), dtype=float64)
-            self.sgd_cache_bias_GLOBAL_momentum_2 = np.zeros((1, 1), dtype=float64)
+            self.sgd_cache_bias_GLOBAL_momentum_1 = np.zeros((1, 1), dtype=np.float64)
+            self.sgd_cache_bias_GLOBAL_momentum_2 = np.zeros((1, 1), dtype=np.float64)
 
 
 
@@ -452,7 +452,7 @@ cdef class MatrixFactorization_Cython_Epoch:
         cdef double prediction, prediction_error
         cdef double local_gradient_item, local_gradient_user, local_gradient_bias_item, local_gradient_bias_user, local_gradient_bias_global
 
-        cdef double[:] user_factors_accumulated = np.zeros(self.n_factors, dtype=float64)
+        cdef double[:] user_factors_accumulated = np.zeros(self.n_factors, dtype=np.float64)
         cdef long start_pos_seen_items, end_pos_seen_items, item_id, factor_index, item_index, user_index
 
         cdef double H_i, W_u, cumulative_loss = 0.0, denominator

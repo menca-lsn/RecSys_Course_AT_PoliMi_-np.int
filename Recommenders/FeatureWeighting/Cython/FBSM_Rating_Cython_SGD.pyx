@@ -118,18 +118,18 @@ cdef class FBSM_Rating_Cython_SGD:
                 "FBSM_Rating_Cython_SGD: Wrong shape for weights_initialization_D, received was {}, expected was {}.".format(
                     np.array(weights_initialization_D).ravel().shape, (self.n_features,))
 
-            self.D = np.array(weights_initialization_D, dtype=float64)
+            self.D = np.array(weights_initialization_D, dtype=np.float64)
         else:
-            self.D = np.zeros(self.n_features, dtype=float64)
+            self.D = np.zeros(self.n_features, dtype=np.float64)
 
         if weights_initialization_V is not None:
             assert np.array(weights_initialization_V).ravel().shape == (self.n_factors, self.n_features), \
                 "FBSM_Rating_Cython_SGD: Wrong shape for weights_initialization_V, received was {}, expected was {}.".format(
                     np.array(weights_initialization_V).ravel().shape, (self.n_factors, self.n_features))
 
-            self.V = np.array(weights_initialization_V, dtype=float64)
+            self.V = np.array(weights_initialization_V, dtype=np.float64)
         else:
-            self.V = np.random.normal(mean_init, std_init, (self.n_factors, self.n_features)).astype(float64)
+            self.V = np.random.normal(mean_init, std_init, (self.n_factors, self.n_features)).astype(np.float64)
 
 
 
@@ -176,13 +176,13 @@ cdef class FBSM_Rating_Cython_SGD:
 
         if sgd_mode=='adagrad':
             self.useAdaGrad = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
 
         elif sgd_mode=='rmsprop':
             self.useRmsprop = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
 
             # Gamma default value suggested by Hinton
             # self.gamma = 0.9
@@ -190,11 +190,11 @@ cdef class FBSM_Rating_Cython_SGD:
 
         elif sgd_mode=='adam':
             self.useAdam = True
-            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=float64)
+            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=np.float64)
 
-            self.sgd_cache_V_momentum_1 = np.zeros((self.n_factors, self.n_features), dtype=float64)
-            self.sgd_cache_V_momentum_2 = np.zeros((self.n_factors, self.n_features), dtype=float64)
+            self.sgd_cache_V_momentum_1 = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
+            self.sgd_cache_V_momentum_2 = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
 
             # Default value suggested by the original paper
             # beta_1=0.9, beta_2=0.999
@@ -229,18 +229,18 @@ cdef class FBSM_Rating_Cython_SGD:
         cdef BPR_sample sample
 
         cdef int [:] user_feature_count_u_full_vector = np.zeros(self.n_features, dtype=int32)
-        cdef double [:] D_update = np.zeros(self.n_features, dtype=float64)
-        cdef double [:,:] V_update = np.zeros((self.n_factors, self.n_features), dtype=float64)
+        cdef double [:] D_update = np.zeros(self.n_features, dtype=np.float64)
+        cdef double [:,:] V_update = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
         cdef int [:] updated_features_id = np.zeros(self.n_features, dtype=int32)
         cdef int [:] updated_features_flag = np.zeros(self.n_features, dtype=int32)
         cdef int updated_features_count
 
         # cdef array[double] template_zero = array('d')
         # cdef array[double] V_f_u, Vdelta_ij, Vfi, Ddelta_ij
-        cdef double [:] V_f_u = np.zeros(self.n_factors, dtype=float64)
-        cdef double [:] Vdelta_ij = np.zeros(self.n_factors, dtype=float64)
-        cdef double [:] Vfi = np.zeros(self.n_factors, dtype=float64)
-        cdef double [:] Ddelta_ij = np.zeros(self.n_features, dtype=float64)
+        cdef double [:] V_f_u = np.zeros(self.n_factors, dtype=np.float64)
+        cdef double [:] Vdelta_ij = np.zeros(self.n_factors, dtype=np.float64)
+        cdef double [:] Vfi = np.zeros(self.n_factors, dtype=np.float64)
+        cdef double [:] Ddelta_ij = np.zeros(self.n_features, dtype=np.float64)
 
         start_time = time.time()
 

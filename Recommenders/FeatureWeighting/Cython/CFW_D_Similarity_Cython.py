@@ -124,18 +124,18 @@ class CFW_D_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixRe
         weights_initialization_D = None
 
         if initialization_mode_D == "random":
-            weights_initialization_D = np.random.normal(0.001, 0.1, self.n_features).astype(float64)
+            weights_initialization_D = np.random.normal(0.001, 0.1, self.n_features).astype(np.float64)
         elif initialization_mode_D == "one":
-            weights_initialization_D = np.ones(self.n_features, dtype=float64)
+            weights_initialization_D = np.ones(self.n_features, dtype=np.float64)
         elif initialization_mode_D == "zero":
-            weights_initialization_D = np.zeros(self.n_features, dtype=float64)
+            weights_initialization_D = np.zeros(self.n_features, dtype=np.float64)
         elif initialization_mode_D == "BM25":
-            weights_initialization_D = np.ones(self.n_features, dtype=float64)
+            weights_initialization_D = np.ones(self.n_features, dtype=np.float64)
             self.ICM = self.ICM.astype(np.float32)
             self.ICM = okapi_BM_25(self.ICM)
 
         elif initialization_mode_D == "TF-IDF":
-            weights_initialization_D = np.ones(self.n_features, dtype=float64)
+            weights_initialization_D = np.ones(self.n_features, dtype=np.float64)
             self.ICM = self.ICM.astype(np.float32)
             self.ICM = TF_IDF(self.ICM)
 
@@ -228,7 +228,7 @@ class CFW_D_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixRe
 
         self.row_list = np.zeros(estimated_n_samples, dtype=int32)
         self.col_list = np.zeros(estimated_n_samples, dtype=int32)
-        self.data_list = np.zeros(estimated_n_samples, dtype=float64)
+        self.data_list = np.zeros(estimated_n_samples, dtype=np.float64)
 
         num_samples = 0
 
@@ -260,7 +260,7 @@ class CFW_D_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixRe
                     dataBlock = 1000000
                     self.row_list = np.concatenate((self.row_list, np.zeros(dataBlock, dtype=int32)))
                     self.col_list = np.concatenate((self.col_list, np.zeros(dataBlock, dtype=int32)))
-                    self.data_list = np.concatenate((self.data_list, np.zeros(dataBlock, dtype=float64)))
+                    self.data_list = np.concatenate((self.data_list, np.zeros(dataBlock, dtype=np.float64)))
 
                 if is_common[index]:
                     # If cell exists in target matrix, add its value

@@ -86,18 +86,18 @@ class CFW_DVV_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrix
         weights_initialization_D = None
 
         if initialization_mode_D == "random":
-            weights_initialization_D = np.random.normal(0.001, 0.1, self.n_features).astype(float64)
+            weights_initialization_D = np.random.normal(0.001, 0.1, self.n_features).astype(np.float64)
         elif initialization_mode_D == "one":
-            weights_initialization_D = np.ones(self.n_features, dtype=float64)
+            weights_initialization_D = np.ones(self.n_features, dtype=np.float64)
         elif initialization_mode_D == "zero":
-            weights_initialization_D = np.zeros(self.n_features, dtype=float64)
+            weights_initialization_D = np.zeros(self.n_features, dtype=np.float64)
         elif initialization_mode_D == "BM25":
-            weights_initialization_D = np.ones(self.n_features, dtype=float64)
+            weights_initialization_D = np.ones(self.n_features, dtype=np.float64)
             self.ICM = self.ICM.astype(np.float32)
             self.ICM = okapi_BM_25(self.ICM)
 
         elif initialization_mode_D == "TF-IDF":
-            weights_initialization_D = np.ones(self.n_features, dtype=float64)
+            weights_initialization_D = np.ones(self.n_features, dtype=np.float64)
             self.ICM = self.ICM.astype(np.float32)
             self.ICM = TF_IDF(self.ICM)
 
@@ -198,12 +198,12 @@ class CFW_DVV_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrix
         if zeros_to_add != 0.0:
             self.row_list = np.concatenate((np.array(self.S_matrix_target.row, dtype=int32), np.zeros(zeros_to_add, dtype=int32)))
             self.col_list = np.concatenate((np.array(self.S_matrix_target.col, dtype=int32), np.zeros(zeros_to_add, dtype=int32)))
-            self.data_list = np.concatenate((np.array(self.S_matrix_target.data, dtype=float64), np.zeros(zeros_to_add, dtype=float64)))
+            self.data_list = np.concatenate((np.array(self.S_matrix_target.data, dtype=np.float64), np.zeros(zeros_to_add, dtype=np.float64)))
 
         else:
             self.row_list = np.array(self.S_matrix_target.row, dtype=int32)
             self.col_list = np.array(self.S_matrix_target.col, dtype=int32)
-            self.data_list = np.array(self.S_matrix_target.data, dtype=float64)
+            self.data_list = np.array(self.S_matrix_target.data, dtype=np.float64)
 
         self._add_zeros_in_train_data_row_wise()
 

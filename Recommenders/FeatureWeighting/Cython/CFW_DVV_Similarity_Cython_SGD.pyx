@@ -73,7 +73,7 @@ cdef class CFW_DVV_Similarity_Cython_SGD:
 
         self.row_list = np.array(row_list, dtype=int32)
         self.col_list = np.array(col_list, dtype=int32)
-        self.data_list = np.array(data_list, dtype=float64)
+        self.data_list = np.array(data_list, dtype=np.float64)
 
         self.n_samples = len(self.row_list)
 
@@ -103,18 +103,18 @@ cdef class CFW_DVV_Similarity_Cython_SGD:
                 "CFW_DVV_Similarity_Cython_SGD: Wrong shape for weights_initialization_D, received was {}, expected was {}.".format(
                     np.array(weights_initialization_D).ravel().shape, (self.n_features,))
 
-            self.D = np.array(weights_initialization_D, dtype=float64)
+            self.D = np.array(weights_initialization_D, dtype=np.float64)
         else:
-            self.D = np.zeros(self.n_features, dtype=float64)
+            self.D = np.zeros(self.n_features, dtype=np.float64)
 
         if weights_initialization_V is not None:
             assert np.array(weights_initialization_V).ravel().shape == (self.n_factors, self.n_features), \
                 "CFW_DVV_Similarity_Cython_SGD: Wrong shape for weights_initialization_V, received was {}, expected was {}.".format(
                     np.array(weights_initialization_V).ravel().shape, (self.n_factors, self.n_features))
 
-            self.V = np.array(weights_initialization_V, dtype=float64)
+            self.V = np.array(weights_initialization_V, dtype=np.float64)
         else:
-            self.V = np.random.normal(mean_init, std_init, (self.n_factors, self.n_features)).astype(float64)
+            self.V = np.random.normal(mean_init, std_init, (self.n_factors, self.n_features)).astype(np.float64)
 
 
 
@@ -140,13 +140,13 @@ cdef class CFW_DVV_Similarity_Cython_SGD:
 
         if sgd_mode=='adagrad':
             self.useAdaGrad = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
 
         elif sgd_mode=='rmsprop':
             self.useRmsprop = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_V = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
 
             # Gamma default value suggested by Hinton
             # self.gamma = 0.9
@@ -154,11 +154,11 @@ cdef class CFW_DVV_Similarity_Cython_SGD:
 
         elif sgd_mode=='adam':
             self.useAdam = True
-            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=float64)
+            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=np.float64)
 
-            self.sgd_cache_V_momentum_1 = np.zeros((self.n_factors, self.n_features), dtype=float64)
-            self.sgd_cache_V_momentum_2 = np.zeros((self.n_factors, self.n_features), dtype=float64)
+            self.sgd_cache_V_momentum_1 = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
+            self.sgd_cache_V_momentum_2 = np.zeros((self.n_factors, self.n_features), dtype=np.float64)
 
             # Default value suggested by the original paper
             # beta_1=0.9, beta_2=0.999

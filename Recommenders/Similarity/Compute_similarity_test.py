@@ -227,7 +227,7 @@ class MyTestCase(unittest.TestCase):
         W_dense_Parallel = cosine_similarity.compute_similarity()
 
 
-        data_matrix = data_matrix.toarray().astype(float64)
+        data_matrix = data_matrix.toarray().astype(np.float64)
         for row in range(data_matrix.shape[0]):
 
             nonzeroMask = data_matrix[row,:]>0
@@ -276,7 +276,7 @@ class MyTestCase(unittest.TestCase):
         W_dense_Parallel = cosine_similarity.compute_similarity()
 
 
-        data_matrix = data_matrix.toarray().astype(float64)
+        data_matrix = data_matrix.toarray().astype(np.float64)
         for col in range(data_matrix.shape[1]):
 
             nonzeroMask = data_matrix[:,col]>0
@@ -326,7 +326,7 @@ class MyTestCase(unittest.TestCase):
 
 
         data_matrix.data = np.ones_like(data_matrix.data)
-        data_matrix = data_matrix.toarray().astype(float64)
+        data_matrix = data_matrix.toarray().astype(np.float64)
 
         W_dense_mul = data_matrix.T.dot(data_matrix)
 

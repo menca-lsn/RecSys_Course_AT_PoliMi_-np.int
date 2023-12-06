@@ -72,7 +72,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
 
         self.row_list = np.array(row_list, dtype=int32)
         self.col_list = np.array(col_list, dtype=int32)
-        self.data_list = np.array(data_list, dtype=float64)
+        self.data_list = np.array(data_list, dtype=np.float64)
 
         self.n_features = n_features
         self.learning_rate = learning_rate
@@ -83,9 +83,9 @@ cdef class CFW_D_Similarity_Cython_SGD:
         self.positive_only_D = positive_only_D
 
         if weights_initialization_D is not None:
-            self.D = np.array(weights_initialization_D, dtype=float64)
+            self.D = np.array(weights_initialization_D, dtype=np.float64)
         else:
-            self.D = np.zeros(self.n_features, dtype=float64)
+            self.D = np.zeros(self.n_features, dtype=np.float64)
 
 
         # RUN TEST
@@ -93,8 +93,8 @@ cdef class CFW_D_Similarity_Cython_SGD:
 
 
         self.common_features_id = np.zeros((self.n_features), dtype=int32)
-        self.common_features_data = np.zeros((self.n_features), dtype=float64)
-        self.common_features_data_i = np.zeros((self.n_features), dtype=float64)
+        self.common_features_data = np.zeros((self.n_features), dtype=np.float64)
+        self.common_features_data_i = np.zeros((self.n_features), dtype=np.float64)
         self.common_features_flag = np.zeros((self.n_features), dtype=int32)
 
         self.precompute_common_features = precompute_common_features
@@ -105,7 +105,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
         else:
             self.icm_indices = np.array(ICM.indices, dtype=int32)
             self.icm_indptr = np.array(ICM.indptr, dtype=int32)
-            self.icm_data = np.array(ICM.data, dtype=float64)
+            self.icm_data = np.array(ICM.data, dtype=np.float64)
 
 
 
@@ -125,11 +125,11 @@ cdef class CFW_D_Similarity_Cython_SGD:
 
         if sgd_mode=='adagrad':
             self.useAdaGrad = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
 
         elif sgd_mode=='rmsprop':
             self.useRmsprop = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
 
             # Gamma default value suggested by Hinton
             # self.gamma = 0.9
@@ -137,8 +137,8 @@ cdef class CFW_D_Similarity_Cython_SGD:
 
         elif sgd_mode=='adam':
             self.useAdam = True
-            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=float64)
-            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=float64)
+            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=np.float64)
 
             # Default value suggested by the original paper
             # beta_1=0.9, beta_2=0.999
@@ -160,8 +160,8 @@ cdef class CFW_D_Similarity_Cython_SGD:
         n_test_features = 50
 
         self.common_features_id = np.zeros((n_test_features), dtype=int32)
-        self.common_features_data = np.zeros((n_test_features), dtype=float64)
-        self.common_features_data_i = np.zeros((n_test_features), dtype=float64)
+        self.common_features_data = np.zeros((n_test_features), dtype=np.float64)
+        self.common_features_data_i = np.zeros((n_test_features), dtype=np.float64)
         self.common_features_flag = np.zeros((n_test_features), dtype=int32)
 
         self.feature_common_test()
@@ -176,7 +176,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
         # Init Common features
         self.commonFeatures_indices = np.array(commonFeatures.indices, dtype=int32)
         self.commonFeatures_indptr = np.array(commonFeatures.indptr, dtype=int32)
-        self.commonFeatures_data = np.array(commonFeatures.data, dtype=float64)
+        self.commonFeatures_data = np.array(commonFeatures.data, dtype=np.float64)
 
 
 
@@ -412,7 +412,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
         f_j = np.array([1, 7, 9, 11, 15, 18], dtype=int32)
 
         common_np = intersect1d(f_i, f_j)
-        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
+        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
         common_cy = self.common_features_id[0:count]
         common_cy = np.sort(np.array(common_cy))
 
@@ -425,7 +425,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
         f_j = np.array([1, 10, 11], dtype=int32)
 
         common_np = intersect1d(f_i, f_j)
-        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
+        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
         common_cy = self.common_features_id[0:count]
         common_cy = np.sort(np.array(common_cy))
 
@@ -438,7 +438,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
         f_j = np.array([1, 2, 5, 10, 15], dtype=int32)
 
         common_np = intersect1d(f_i, f_j)
-        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
+        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
         common_cy = self.common_features_id[0:count]
         common_cy = np.sort(np.array(common_cy))
 
@@ -458,7 +458,7 @@ cdef class CFW_D_Similarity_Cython_SGD:
             f_j = np.unique(f_j)
 
             common_np = intersect1d(f_i, f_j)
-            count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
+            count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
             common_cy = self.common_features_id[0:count]
             common_cy = np.sort(np.array(common_cy))
 
