@@ -26,12 +26,12 @@ cdef class Cosine_Similarity:
         URM = URM.tocsr()
         self.user_to_item_row_ptr = URM.indptr
         self.user_to_item_cols = URM.indices
-        self.user_to_item_data = np.array(URM.data, dtype=np.float64)
+        self.user_to_item_data = np.array(URM.data, dtype=float64)
 
         URM = URM.tocsc()
         self.item_to_user_rows = URM.indices
         self.item_to_user_col_ptr = URM.indptr
-        self.item_to_user_data = np.array(URM.data, dtype=np.float64)
+        self.item_to_user_data = np.array(URM.data, dtype=float64)
 
         if self.TopK == 0:
             self.W_dense = np.zeros((self.n_items,self.n_items))
@@ -182,7 +182,7 @@ cdef class Cosine_Similarity:
 
             W_sparse = sps.csr_matrix((values, (rows, cols)),
                                     shape=(self.n_items, self.n_items),
-                                    dtype=np.float32)
+                                    dtype=float32)
 
             return W_sparse
 

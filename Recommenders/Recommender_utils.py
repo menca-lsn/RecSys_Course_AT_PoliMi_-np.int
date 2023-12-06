@@ -12,12 +12,12 @@ import scipy.sparse as sps
 import time
 import os
 
-def check_matrix(X, format='csc', dtype=np.float32):
+def check_matrix(X, format='csc', dtype=float32):
     """
     This function takes a matrix as input and transforms it into the specified format.
     The matrix in input can be either sparse or ndarray.
     If the matrix in input has already the desired format, it is returned as-is
-    the dtype parameter is always applied and the default is np.float32
+    the dtype parameter is always applied and the default is float32
     :param X:
     :param format:
     :param dtype:
@@ -69,7 +69,7 @@ def similarityMatrixTopK(item_weights, k=100, verbose = False, use_absolute_valu
     assert (item_weights.shape[0] == item_weights.shape[1]), "selectTopK: ItemWeights is not a square matrix"
 
     n_items = item_weights.shape[0]
-    similarity_builder = Incremental_Similarity_Builder(n_items, initial_data_block=n_items*k, dtype = np.float32)
+    similarity_builder = Incremental_Similarity_Builder(n_items, initial_data_block=n_items*k, dtype = float32)
 
     start_time = time.time()
 
@@ -81,7 +81,7 @@ def similarityMatrixTopK(item_weights, k=100, verbose = False, use_absolute_valu
 
     # iterate over each column and keep only the top-k similar items
     if sparse_weights:
-        item_weights = check_matrix(item_weights, format='csc', dtype=np.float32)
+        item_weights = check_matrix(item_weights, format='csc', dtype=float32)
 
 
     for item_idx in range(n_items):

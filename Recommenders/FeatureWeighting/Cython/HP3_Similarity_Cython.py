@@ -50,7 +50,7 @@ class HP3_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixReco
         self.n_features = self.ICM.shape[1]
 
 
-        self.D_incremental = np.ones(self.n_features, dtype=np.float64)
+        self.D_incremental = np.ones(self.n_features, dtype=float64)
         self.D_best = self.D_incremental.copy()
 
 
@@ -92,7 +92,7 @@ class HP3_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixReco
         self._generate_train_data()
 
 
-        weights_initialization_D = np.ones(self.n_features, dtype=np.float64) * init_value
+        weights_initialization_D = np.ones(self.n_features, dtype=float64) * init_value
 
         # Instantiate fast Cython implementation
         self.HP3_Similarity = HP3_Similarity_Cython_SGD(self.row_list, self.col_list, self.data_list,
@@ -169,7 +169,7 @@ class HP3_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixReco
 
         self.row_list = np.zeros(estimated_n_samples, dtype=int32)
         self.col_list = np.zeros(estimated_n_samples, dtype=int32)
-        self.data_list = np.zeros(estimated_n_samples, dtype=np.float64)
+        self.data_list = np.zeros(estimated_n_samples, dtype=float64)
 
         num_samples = 0
 
@@ -201,7 +201,7 @@ class HP3_Similarity_Cython(BaseItemCBFRecommender, BaseItemSimilarityMatrixReco
                     dataBlock = 1000000
                     self.row_list = np.concatenate((self.row_list, np.zeros(dataBlock, dtype=int32)))
                     self.col_list = np.concatenate((self.col_list, np.zeros(dataBlock, dtype=int32)))
-                    self.data_list = np.concatenate((self.data_list, np.zeros(dataBlock, dtype=np.float64)))
+                    self.data_list = np.concatenate((self.data_list, np.zeros(dataBlock, dtype=float64)))
 
                 if is_common[index]:
                     # If cell exists in target matrix, add its value

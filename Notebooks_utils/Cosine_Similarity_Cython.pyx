@@ -38,12 +38,12 @@ cdef class Cosine_Similarity:
         URM = URM.tocsr()
         self.user_to_item_row_ptr = URM.indptr
         self.user_to_item_cols = URM.indices
-        self.user_to_item_data = np.array(URM.data, dtype=np.float64)
+        self.user_to_item_data = np.array(URM.data, dtype=float64)
 
         URM = URM.tocsc()
         self.item_to_user_rows = URM.indices
         self.item_to_user_col_ptr = URM.indptr
-        self.item_to_user_data = np.array(URM.data, dtype=np.float64)
+        self.item_to_user_data = np.array(URM.data, dtype=float64)
 
         if self.TopK == 0:
             self.W_dense = np.zeros((self.n_items,self.n_items))
@@ -130,7 +130,7 @@ cdef class Cosine_Similarity:
 
         # Declare numpy data type to use vetor indexing and simplify the topK selection code
         cdef np.ndarray[long, ndim=1] top_k_partition, top_k_partition_sorting
-        cdef np.ndarray[np.float64_t, ndim=1] this_item_weights_np
+        cdef np.ndarray[float64_t, ndim=1] this_item_weights_np
 
         #cdef long[:] top_k_idx
         cdef double[:] this_item_weights
@@ -213,7 +213,7 @@ cdef class Cosine_Similarity:
 
             W_sparse = sps.csr_matrix((values, (rows, cols)),
                                     shape=(self.n_items, self.n_items),
-                                    dtype=np.float32)
+                                    dtype=float32)
 
             return W_sparse
 

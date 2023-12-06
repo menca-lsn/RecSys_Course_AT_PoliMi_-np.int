@@ -145,7 +145,7 @@ cdef class Compute_Similarity_Cython:
 
 
         self.topK = min(topK, self.n_columns)
-        self.this_item_weights = np.zeros(self.n_columns, dtype=np.float64)
+        self.this_item_weights = np.zeros(self.n_columns, dtype=float64)
         self.this_item_weights_id = np.zeros(self.n_columns, dtype=int32)
         self.this_item_weights_mask = np.zeros(self.n_columns, dtype=int32)
         self.this_item_weights_counter = 0
@@ -167,7 +167,7 @@ cdef class Compute_Similarity_Cython:
 
 
         # Compute sum of squared values to be used in normalization
-        self.sum_of_squared = np.array(dataMatrix.power(2).sum(axis=0), dtype=np.float64).ravel()
+        self.sum_of_squared = np.array(dataMatrix.power(2).sum(axis=0), dtype=float64).ravel()
 
         # Tanimoto does not require the square root to be applied
         if not (self.tanimoto_coefficient or self.dice_coefficient or self.tversky_coefficient):
@@ -191,7 +191,7 @@ cdef class Compute_Similarity_Cython:
 
 
             self.use_row_weights = True
-            self.row_weights = np.array(row_weights, dtype=np.float64)
+            self.row_weights = np.array(row_weights, dtype=float64)
 
 
 
@@ -201,12 +201,12 @@ cdef class Compute_Similarity_Cython:
 
         self.user_to_item_row_ptr = dataMatrix.indptr
         self.user_to_item_cols = dataMatrix.indices
-        self.user_to_item_data = np.array(dataMatrix.data, dtype=np.float64)
+        self.user_to_item_data = np.array(dataMatrix.data, dtype=float64)
 
         dataMatrix = check_matrix(dataMatrix, 'csc')
         self.item_to_user_rows = dataMatrix.indices
         self.item_to_user_col_ptr = dataMatrix.indptr
-        self.item_to_user_data = np.array(dataMatrix.data, dtype=np.float64)
+        self.item_to_user_data = np.array(dataMatrix.data, dtype=float64)
 
 
 
@@ -248,7 +248,7 @@ cdef class Compute_Similarity_Cython:
         dataMatrix = check_matrix(dataMatrix, 'csc')
 
 
-        sumPerCol = np.array(dataMatrix.sum(axis=0), dtype=np.float64).ravel()
+        sumPerCol = np.array(dataMatrix.sum(axis=0), dtype=float64).ravel()
         interactionsPerCol = np.diff(dataMatrix.indptr)
 
 
@@ -287,7 +287,7 @@ cdef class Compute_Similarity_Cython:
 
         dataMatrix = check_matrix(dataMatrix, 'csr')
 
-        sumPerRow = np.array(dataMatrix.sum(axis=1), dtype=np.float64).ravel()
+        sumPerRow = np.array(dataMatrix.sum(axis=1), dtype=float64).ravel()
         interactionsPerRow = np.diff(dataMatrix.indptr)
 
 
@@ -428,7 +428,7 @@ cdef class Compute_Similarity_Cython:
 
         # Declare numpy data type to use vetor indexing and simplify the topK selection code
         cdef np.ndarray[LONG_t, ndim=1] relevant_items_partition
-        cdef np.ndarray[np.float64_t, ndim=1] this_item_weights_np = np.zeros(self.n_columns, dtype=np.float64)
+        cdef np.ndarray[float64_t, ndim=1] this_item_weights_np = np.zeros(self.n_columns, dtype=float64)
         #cdef double[:] this_item_weights
 
         cdef long processed_items = 0
@@ -586,6 +586,6 @@ cdef class Compute_Similarity_Cython:
 
             W_sparse = sps.csr_matrix((values, (rows, cols)),
                                     shape=(self.n_columns, self.n_columns),
-                                    dtype=np.float32)
+                                    dtype=float32)
 
             return W_sparse

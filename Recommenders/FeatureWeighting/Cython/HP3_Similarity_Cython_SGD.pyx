@@ -72,7 +72,7 @@ cdef class HP3_Similarity_Cython_SGD:
 
         self.row_list = np.array(row_list, dtype=int32)
         self.col_list = np.array(col_list, dtype=int32)
-        self.data_list = np.array(data_list, dtype=np.float64)
+        self.data_list = np.array(data_list, dtype=float64)
 
         self.n_features = n_features
         self.learning_rate = learning_rate
@@ -81,14 +81,14 @@ cdef class HP3_Similarity_Cython_SGD:
         self.verbose = verbose
 
         if weights_initialization_D is not None:
-            self.D = np.array(weights_initialization_D, dtype=np.float64)
+            self.D = np.array(weights_initialization_D, dtype=float64)
         else:
-            self.D = np.zeros(self.n_features, dtype=np.float64)
+            self.D = np.zeros(self.n_features, dtype=float64)
 
 
         self.common_features_id = np.zeros((self.n_features), dtype=int32)
-        self.common_features_data = np.zeros((self.n_features), dtype=np.float64)
-        self.common_features_data_i = np.zeros((self.n_features), dtype=np.float64)
+        self.common_features_data = np.zeros((self.n_features), dtype=float64)
+        self.common_features_data_i = np.zeros((self.n_features), dtype=float64)
         self.common_features_flag = np.zeros((self.n_features), dtype=int32)
 
         self.precompute_common_features = precompute_common_features
@@ -98,7 +98,7 @@ cdef class HP3_Similarity_Cython_SGD:
 
         self.icm_indices = np.array(ICM.indices, dtype=int32)
         self.icm_indptr = np.array(ICM.indptr, dtype=int32)
-        self.icm_data = np.array(ICM.data, dtype=np.float64)
+        self.icm_data = np.array(ICM.data, dtype=float64)
 
         if self.precompute_common_features:
             self.precompute_common_features_function(ICM)
@@ -109,7 +109,7 @@ cdef class HP3_Similarity_Cython_SGD:
         self.dropout_perc = dropout_perc
         self.dropout_mask = np.ones(self.n_features, dtype=int32)
 
-        self.dpfInverse = np.asarray(np.reciprocal(ICM.sum(axis=0).astype(np.float64))).squeeze()
+        self.dpfInverse = np.asarray(np.reciprocal(ICM.sum(axis=0).astype(float64))).squeeze()
         self.dpfInverse[self.dpfInverse == -np.inf] = 0.0
         self.dpfInverse[self.dpfInverse == np.inf] = 0.0
 
@@ -121,11 +121,11 @@ cdef class HP3_Similarity_Cython_SGD:
 
         if sgd_mode=='adagrad':
             self.useAdaGrad = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
 
         elif sgd_mode=='rmsprop':
             self.useRmsprop = True
-            self.sgd_cache_D = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_D = np.zeros((self.n_features), dtype=float64)
 
             # Gamma default value suggested by Hinton
             # self.gamma = 0.9
@@ -133,8 +133,8 @@ cdef class HP3_Similarity_Cython_SGD:
 
         elif sgd_mode=='adam':
             self.useAdam = True
-            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=np.float64)
-            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=np.float64)
+            self.sgd_cache_D_momentum_1 = np.zeros((self.n_features), dtype=float64)
+            self.sgd_cache_D_momentum_2 = np.zeros((self.n_features), dtype=float64)
 
             # Default value suggested by the original paper
             # beta_1=0.9, beta_2=0.999
@@ -162,7 +162,7 @@ cdef class HP3_Similarity_Cython_SGD:
         # Init Common features
         self.commonFeatures_indices = np.array(commonFeatures.indices, dtype=int32)
         self.commonFeatures_indptr = np.array(commonFeatures.indptr, dtype=int32)
-        self.commonFeatures_data = np.array(commonFeatures.data, dtype=np.float64)
+        self.commonFeatures_data = np.array(commonFeatures.data, dtype=float64)
 
 
 
@@ -187,7 +187,7 @@ cdef class HP3_Similarity_Cython_SGD:
 
         # Get number of available interactions
         n_samples = len(self.data_list)
-        gradient = np.zeros(self.n_features, dtype=np.float64)
+        gradient = np.zeros(self.n_features, dtype=float64)
         cum_loss = 0
 
         # Shuffle data
@@ -396,7 +396,7 @@ cdef class HP3_Similarity_Cython_SGD:
         f_j = np.array([1, 7, 9, 11, 15, 18], dtype=int32)
 
         common_np = intersect1d(f_i, f_j)
-        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
+        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
         common_cy = self.common_features_id[0:count]
         common_cy = np.sort(np.array(common_cy))
 
@@ -409,7 +409,7 @@ cdef class HP3_Similarity_Cython_SGD:
         f_j = np.array([1, 10, 11], dtype=int32)
 
         common_np = intersect1d(f_i, f_j)
-        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
+        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
         common_cy = self.common_features_id[0:count]
         common_cy = np.sort(np.array(common_cy))
 
@@ -422,7 +422,7 @@ cdef class HP3_Similarity_Cython_SGD:
         f_j = np.array([1, 2, 5, 10, 15], dtype=int32)
 
         common_np = intersect1d(f_i, f_j)
-        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
+        count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
         common_cy = self.common_features_id[0:count]
         common_cy = np.sort(np.array(common_cy))
 
@@ -442,7 +442,7 @@ cdef class HP3_Similarity_Cython_SGD:
             f_j = np.unique(f_j)
 
             common_np = intersect1d(f_i, f_j)
-            count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=np.float64), np.ones_like(f_j, dtype=np.float64))
+            count = self.feature_common_unordered(f_i, f_j, np.ones_like(f_i, dtype=float64), np.ones_like(f_j, dtype=float64))
             common_cy = self.common_features_id[0:count]
             common_cy = np.sort(np.array(common_cy))
 

@@ -13,7 +13,7 @@ def train_multiple_epochs(URM_train, learning_rate_input, n_epochs):
     n_items = URM_train.shape[1]
     n_interactions = URM_train.nnz
 
-    item_item_S = np.zeros((n_items, n_items), dtype = np.float16)
+    item_item_S = np.zeros((n_items, n_items), dtype = float16)
 
     learning_rate = learning_rate_input
 

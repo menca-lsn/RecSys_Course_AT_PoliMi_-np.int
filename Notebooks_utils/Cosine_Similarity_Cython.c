@@ -2957,7 +2957,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
  *         URM = URM.tocsr()
  *         self.user_to_item_row_ptr = URM.indptr             # <<<<<<<<<<<<<<
  *         self.user_to_item_cols = URM.indices
- *         self.user_to_item_data = np.array(URM.data, dtype=np.float64)
+ *         self.user_to_item_data = np.array(URM.data, dtype=float64)
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_URM, __pyx_n_s_indptr); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -2972,7 +2972,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
  *         URM = URM.tocsr()
  *         self.user_to_item_row_ptr = URM.indptr
  *         self.user_to_item_cols = URM.indices             # <<<<<<<<<<<<<<
- *         self.user_to_item_data = np.array(URM.data, dtype=np.float64)
+ *         self.user_to_item_data = np.array(URM.data, dtype=float64)
  * 
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_URM, __pyx_n_s_indices); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 40, __pyx_L1_error)
@@ -2987,7 +2987,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
   /* "Cosine_Similarity_Cython.pyx":41
  *         self.user_to_item_row_ptr = URM.indptr
  *         self.user_to_item_cols = URM.indices
- *         self.user_to_item_data = np.array(URM.data, dtype=np.float64)             # <<<<<<<<<<<<<<
+ *         self.user_to_item_data = np.array(URM.data, dtype=float64)             # <<<<<<<<<<<<<<
  * 
  *         URM = URM.tocsc()
  */
@@ -3025,7 +3025,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
   __pyx_t_10.data = NULL;
 
   /* "Cosine_Similarity_Cython.pyx":43
- *         self.user_to_item_data = np.array(URM.data, dtype=np.float64)
+ *         self.user_to_item_data = np.array(URM.data, dtype=float64)
  * 
  *         URM = URM.tocsc()             # <<<<<<<<<<<<<<
  *         self.item_to_user_rows = URM.indices
@@ -3056,7 +3056,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
  *         URM = URM.tocsc()
  *         self.item_to_user_rows = URM.indices             # <<<<<<<<<<<<<<
  *         self.item_to_user_col_ptr = URM.indptr
- *         self.item_to_user_data = np.array(URM.data, dtype=np.float64)
+ *         self.item_to_user_data = np.array(URM.data, dtype=float64)
  */
   __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_URM, __pyx_n_s_indices); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 44, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_9);
@@ -3071,7 +3071,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
  *         URM = URM.tocsc()
  *         self.item_to_user_rows = URM.indices
  *         self.item_to_user_col_ptr = URM.indptr             # <<<<<<<<<<<<<<
- *         self.item_to_user_data = np.array(URM.data, dtype=np.float64)
+ *         self.item_to_user_data = np.array(URM.data, dtype=float64)
  * 
  */
   __pyx_t_9 = __Pyx_PyObject_GetAttrStr(__pyx_v_URM, __pyx_n_s_indptr); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 45, __pyx_L1_error)
@@ -3086,7 +3086,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
   /* "Cosine_Similarity_Cython.pyx":46
  *         self.item_to_user_rows = URM.indices
  *         self.item_to_user_col_ptr = URM.indptr
- *         self.item_to_user_data = np.array(URM.data, dtype=np.float64)             # <<<<<<<<<<<<<<
+ *         self.item_to_user_data = np.array(URM.data, dtype=float64)             # <<<<<<<<<<<<<<
  * 
  *         if self.TopK == 0:
  */
@@ -3124,7 +3124,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
   __pyx_t_10.data = NULL;
 
   /* "Cosine_Similarity_Cython.pyx":48
- *         self.item_to_user_data = np.array(URM.data, dtype=np.float64)
+ *         self.item_to_user_data = np.array(URM.data, dtype=float64)
  * 
  *         if self.TopK == 0:             # <<<<<<<<<<<<<<
  *             self.W_dense = np.zeros((self.n_items,self.n_items))
@@ -3181,7 +3181,7 @@ static int __pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity___init__(stru
     __pyx_t_11.data = NULL;
 
     /* "Cosine_Similarity_Cython.pyx":48
- *         self.item_to_user_data = np.array(URM.data, dtype=np.float64)
+ *         self.item_to_user_data = np.array(URM.data, dtype=float64)
  * 
  *         if self.TopK == 0:             # <<<<<<<<<<<<<<
  *             self.W_dense = np.zeros((self.n_items,self.n_items))
@@ -4842,7 +4842,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
  * 
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),             # <<<<<<<<<<<<<<
  *                                     shape=(self.n_items, self.n_items),
- *                                     dtype=np.float32)
+ *                                     dtype=float32)
  */
     __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_sps); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -4881,7 +4881,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
  * 
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),
  *                                     shape=(self.n_items, self.n_items),             # <<<<<<<<<<<<<<
- *                                     dtype=np.float32)
+ *                                     dtype=float32)
  * 
  */
     __pyx_t_6 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L1_error)
@@ -4904,7 +4904,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
     /* "Cosine_Similarity_Cython.pyx":216
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),
  *                                     shape=(self.n_items, self.n_items),
- *                                     dtype=np.float32)             # <<<<<<<<<<<<<<
+ *                                     dtype=float32)             # <<<<<<<<<<<<<<
  * 
  *             return W_sparse
  */
@@ -4921,7 +4921,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
  * 
  *             W_sparse = sps.csr_matrix((values, (rows, cols)),             # <<<<<<<<<<<<<<
  *                                     shape=(self.n_items, self.n_items),
- *                                     dtype=np.float32)
+ *                                     dtype=float32)
  */
     __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_6); if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 214, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_16);
@@ -4932,7 +4932,7 @@ __pyx_t_16 = __pyx_memoryview_fromslice(__pyx_t_7, 1, (PyObject *(*)(char *)) __
     __pyx_t_16 = 0;
 
     /* "Cosine_Similarity_Cython.pyx":218
- *                                     dtype=np.float32)
+ *                                     dtype=float32)
  * 
  *             return W_sparse             # <<<<<<<<<<<<<<
  * 

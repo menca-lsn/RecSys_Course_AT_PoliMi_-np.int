@@ -61,11 +61,11 @@ class SLIMElasticNetRecommender(BaseItemSimilarityMatrixRecommender):
                                 max_iter=100,
                                 tol=1e-4)
 
-        URM_train = check_matrix(self.URM_train, 'csc', dtype=np.float32)
+        URM_train = check_matrix(self.URM_train, 'csc', dtype=float32)
 
         n_items = URM_train.shape[1]
 
-        similarity_builder = Incremental_Similarity_Builder(self.n_items, initial_data_block=self.n_items*self.topK, dtype = np.float32)
+        similarity_builder = Incremental_Similarity_Builder(self.n_items, initial_data_block=self.n_items*self.topK, dtype = float32)
 
         start_time = time.time()
         start_time_printBatch = start_time
@@ -214,7 +214,7 @@ class MultiThreadSLIM_SLIMElasticNetRecommender(SLIMElasticNetRecommender):
 
         self.workers = workers
 
-        self.URM_train = check_matrix(self.URM_train, 'csc', dtype=np.float32)
+        self.URM_train = check_matrix(self.URM_train, 'csc', dtype=float32)
 
         indptr_shm = create_shared_memory(self.URM_train.indptr)
         indices_shm = create_shared_memory(self.URM_train.indices)
@@ -253,5 +253,5 @@ class MultiThreadSLIM_SLIMElasticNetRecommender(SLIMElasticNetRecommender):
         data_shm.unlink()
 
         # generate the sparse weight matrix
-        self.W_sparse = sps.csr_matrix((values, (rows, cols)), shape=(self.n_items, self.n_items), dtype=np.float32)
+        self.W_sparse = sps.csr_matrix((values, (rows, cols)), shape=(self.n_items, self.n_items), dtype=float32)
         self.URM_train = self.URM_train.tocsr()

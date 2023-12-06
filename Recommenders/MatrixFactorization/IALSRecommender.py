@@ -103,21 +103,21 @@ class IALSRecommender(BaseMatrixFactorizationRecommender, Incremental_Training_E
         else:
             self.C = self._log_scaling_confidence()
 
-        self.C_csc= check_matrix(self.C.copy(), format="csc", dtype = np.float32)
+        self.C_csc= check_matrix(self.C.copy(), format="csc", dtype = float32)
 
 
 
 
     def _linear_scaling_confidence(self):
 
-        C = check_matrix(self.URM_train, format="csr", dtype = np.float32)
+        C = check_matrix(self.URM_train, format="csr", dtype = float32)
         C.data = 1.0 + self.alpha*C.data
 
         return C
 
     def _log_scaling_confidence(self):
 
-        C = check_matrix(self.URM_train, format="csr", dtype = np.float32)
+        C = check_matrix(self.URM_train, format="csr", dtype = float32)
         C.data = 1.0 + self.alpha * np.log(1.0 + C.data / self.epsilon)
 
         return C

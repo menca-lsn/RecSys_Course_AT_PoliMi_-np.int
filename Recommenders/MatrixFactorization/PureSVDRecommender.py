@@ -65,7 +65,7 @@ def compute_W_sparse_from_item_latent_factors(ITEM_factors, topK = 100):
     start_item = 0
     end_item = 0
 
-    similarity_builder = Incremental_Similarity_Builder(n_items, initial_data_block=n_items*topK, dtype = np.float32)
+    similarity_builder = Incremental_Similarity_Builder(n_items, initial_data_block=n_items*topK, dtype = float32)
 
     # Compute all similarities for each item using vectorization
     while start_item < n_items:

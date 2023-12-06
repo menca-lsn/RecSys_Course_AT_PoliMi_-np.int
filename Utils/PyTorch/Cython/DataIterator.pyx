@@ -61,12 +61,12 @@ from libc.stdlib cimport rand, srand, RAND_MAX
 #
 #         self.URM_train_row = np.array(URM_train.row, dtype=int32)
 #         self.URM_train_col = np.array(URM_train.col, dtype=int32)
-#         self.URM_train_data = np.array(URM_train.data, dtype=np.float64)
+#         self.URM_train_data = np.array(URM_train.data, dtype=float64)
 #
 #         self.batch_size = batch_size
 #         self.batch_user = np.zeros(self.batch_size, dtype=int32)
 #         self.batch_col = np.zeros(self.batch_size, dtype=int32)
-#         self.batch_rating = np.zeros(self.batch_size, dtype=np.float64)
+#         self.batch_rating = np.zeros(self.batch_size, dtype=float64)
 #
 #     def __len__(self):
 #         return math.ceil(self.n_data_points/self.batch_size)
@@ -94,7 +94,7 @@ from libc.stdlib cimport rand, srand, RAND_MAX
 #
 #         return torch.from_numpy(np.array(self.batch_user[:i_batch+1], dtype=int64)),\
 #                torch.from_numpy(np.array(self.batch_col[:i_batch+1], dtype=int64)), \
-#                torch.from_numpy(np.array(self.batch_rating[:i_batch+1], dtype=np.float64))
+#                torch.from_numpy(np.array(self.batch_rating[:i_batch+1], dtype=float64))
 #
 
 @cython.boundscheck(False)
@@ -133,7 +133,7 @@ cdef class InteractionIterator:
 
         self.URM_train_row = np.array(URM_train.row, dtype=int32)
         self.URM_train_col = np.array(URM_train.col, dtype=int32)
-        self.URM_train_data = np.array(URM_train.data, dtype=np.float64)
+        self.URM_train_data = np.array(URM_train.data, dtype=float64)
 
         URM_train = sps.csr_matrix(URM_train)
         URM_train = URM_train.sorted_indices()
@@ -143,7 +143,7 @@ cdef class InteractionIterator:
         self.batch_size = batch_size
         self.batch_user = np.zeros(self.batch_size, dtype=int32)
         self.batch_item = np.zeros(self.batch_size, dtype=int32)
-        self.batch_rating = np.zeros(self.batch_size, dtype=np.float64)
+        self.batch_rating = np.zeros(self.batch_size, dtype=float64)
 
     def __len__(self):
         return math.ceil(self.n_samples_to_draw/self.batch_size)
@@ -199,7 +199,7 @@ cdef class InteractionIterator:
 
         return torch.from_numpy(np.array(self.batch_user[:i_batch+1], dtype=int64)),\
                torch.from_numpy(np.array(self.batch_item[:i_batch+1], dtype=int64)), \
-               torch.from_numpy(np.array(self.batch_rating[:i_batch+1], dtype=np.float64))
+               torch.from_numpy(np.array(self.batch_rating[:i_batch+1], dtype=float64))
 
 
 

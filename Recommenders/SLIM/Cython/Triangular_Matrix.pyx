@@ -149,7 +149,7 @@ cdef class Triangular_Matrix:
 
         # Declare numpy data type to use vetor indexing and simplify the topK selection code
         cdef np.ndarray[LONG_t, ndim=1] top_k_partition, top_k_partition_sorting
-        cdef np.ndarray[np.float64_t, ndim=1] currentRowArray_np
+        cdef np.ndarray[float64_t, ndim=1] currentRowArray_np
 
 
         data = []
