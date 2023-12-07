@@ -156,7 +156,7 @@ cdef class MatrixFactorization_Cython_Epoch:
             srand(<unsigned int> int(random_seed))
 
 
-        self.factors_dropout_mask = np.ones(self.n_factors, dtype=int32)
+        self.factors_dropout_mask = np.ones(self.n_factors, dtype=np.int32)
 
         if dropout_quota is None:
             self.dropout_flag = False

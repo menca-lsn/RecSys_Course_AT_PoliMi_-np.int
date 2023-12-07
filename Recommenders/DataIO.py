@@ -16,7 +16,7 @@ import numpy as np
 
 def json_not_serializable_handler(o):
     """
-    Json cannot serialize automatically some data types, for example numpy integers (int32).
+    Json cannot serialize automatically some data types, for example numpy integers (np.int32).
     This may be a limitation of numpy-json interfaces for Python 3.6 and may not occur in Python 3.7
     :param o:
     :return:

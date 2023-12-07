@@ -32,7 +32,7 @@ class Incremental_Similarity_Builder:
         self._next_cell_pointer = 0
 
         self._dtype_data = dtype
-        self._dtype_coordinates = np.uint32
+        self._dtype_coordinates = np.unp.int32
         self._max_value_of_coordinate_dtype = np.iinfo(self._dtype_coordinates).max
 
         self._row_array = np.zeros(self._initial_data_block, dtype=self._dtype_coordinates)

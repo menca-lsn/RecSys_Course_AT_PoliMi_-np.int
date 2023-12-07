@@ -247,10 +247,10 @@
     #ifndef _MSC_STDINT_H_
         #if _MSC_VER < 1300
            typedef unsigned char     uint8_t;
-           typedef unsigned int      uint32_t;
+           typedef unsigned int      unp.int32_t;
         #else
            typedef unsigned __int8   uint8_t;
-           typedef unsigned __int32  uint32_t;
+           typedef unsigned __np.int32  unp.int32_t;
         #endif
     #endif
 #else
@@ -961,7 +961,7 @@ typedef struct {
  * 
  * ctypedef npy_int8       int8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int16      int16_t
- * ctypedef npy_int32      int32_t
+ * ctypedef npy_np.int32      np.int32_t
  */
 typedef npy_int8 __pyx_t_5numpy_int8_t;
 
@@ -969,7 +969,7 @@ typedef npy_int8 __pyx_t_5numpy_int8_t;
  * 
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t             # <<<<<<<<<<<<<<
- * ctypedef npy_int32      int32_t
+ * ctypedef npy_np.int32      np.int32_t
  * ctypedef npy_int64      int64_t
  */
 typedef npy_int16 __pyx_t_5numpy_int16_t;
@@ -977,15 +977,15 @@ typedef npy_int16 __pyx_t_5numpy_int16_t;
 /* "../../../../../anaconda3/lib/python3.6/site-packages/Cython/Includes/numpy/__init__.pxd":778
  * ctypedef npy_int8       int8_t
  * ctypedef npy_int16      int16_t
- * ctypedef npy_int32      int32_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_np.int32      np.int32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_int64      int64_t
  * #ctypedef npy_int96      int96_t
  */
-typedef npy_int32 __pyx_t_5numpy_int32_t;
+typedef npy_np.int32 __pyx_t_5numpy_np.int32_t;
 
 /* "../../../../../anaconda3/lib/python3.6/site-packages/Cython/Includes/numpy/__init__.pxd":779
  * ctypedef npy_int16      int16_t
- * ctypedef npy_int32      int32_t
+ * ctypedef npy_np.int32      np.int32_t
  * ctypedef npy_int64      int64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_int96      int96_t
  * #ctypedef npy_int128     int128_t
@@ -997,7 +997,7 @@ typedef npy_int64 __pyx_t_5numpy_int64_t;
  * 
  * ctypedef npy_uint8      uint8_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint16     uint16_t
- * ctypedef npy_uint32     uint32_t
+ * ctypedef npy_unp.int32     unp.int32_t
  */
 typedef npy_uint8 __pyx_t_5numpy_uint8_t;
 
@@ -1005,7 +1005,7 @@ typedef npy_uint8 __pyx_t_5numpy_uint8_t;
  * 
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t             # <<<<<<<<<<<<<<
- * ctypedef npy_uint32     uint32_t
+ * ctypedef npy_unp.int32     unp.int32_t
  * ctypedef npy_uint64     uint64_t
  */
 typedef npy_uint16 __pyx_t_5numpy_uint16_t;
@@ -1013,15 +1013,15 @@ typedef npy_uint16 __pyx_t_5numpy_uint16_t;
 /* "../../../../../anaconda3/lib/python3.6/site-packages/Cython/Includes/numpy/__init__.pxd":785
  * ctypedef npy_uint8      uint8_t
  * ctypedef npy_uint16     uint16_t
- * ctypedef npy_uint32     uint32_t             # <<<<<<<<<<<<<<
+ * ctypedef npy_unp.int32     unp.int32_t             # <<<<<<<<<<<<<<
  * ctypedef npy_uint64     uint64_t
  * #ctypedef npy_uint96     uint96_t
  */
-typedef npy_uint32 __pyx_t_5numpy_uint32_t;
+typedef npy_unp.int32 __pyx_t_5numpy_unp.int32_t;
 
 /* "../../../../../anaconda3/lib/python3.6/site-packages/Cython/Includes/numpy/__init__.pxd":786
  * ctypedef npy_uint16     uint16_t
- * ctypedef npy_uint32     uint32_t
+ * ctypedef npy_unp.int32     unp.int32_t
  * ctypedef npy_uint64     uint64_t             # <<<<<<<<<<<<<<
  * #ctypedef npy_uint96     uint96_t
  * #ctypedef npy_uint128    uint128_t
@@ -2424,7 +2424,7 @@ static const char __pyx_k_class[] = "__class__";
 static const char __pyx_k_dtype[] = "dtype";
 static const char __pyx_k_error[] = "error";
 static const char __pyx_k_flags[] = "flags";
-static const char __pyx_k_int32[] = "int32";
+static const char __pyx_k_np.int32[] = "np.int32";
 static const char __pyx_k_numpy[] = "numpy";
 static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
@@ -2588,7 +2588,7 @@ static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_indices;
 static PyObject *__pyx_n_s_indptr;
 static PyObject *__pyx_n_s_init;
-static PyObject *__pyx_n_s_int32;
+static PyObject *__pyx_n_s_np.int32;
 static PyObject *__pyx_n_s_itemsize;
 static PyObject *__pyx_kp_s_itemsize_0_for_cython_array;
 static PyObject *__pyx_n_s_main;
@@ -3853,8 +3853,8 @@ static PyObject *__pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity_2comput
  *         # Data structure to incrementally build sparse matrix
  *         # Preinitialize max possible length
  *         cdef double[:] values = np.zeros((self.n_items*self.TopK))             # <<<<<<<<<<<<<<
- *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=int32)
- *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=int32)
+ *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=np.int32)
+ *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=np.int32)
  */
   __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_np); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 142, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -3888,8 +3888,8 @@ static PyObject *__pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity_2comput
   /* "Cosine_Similarity_Cython.pyx":143
  *         # Preinitialize max possible length
  *         cdef double[:] values = np.zeros((self.n_items*self.TopK))
- *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=int32)             # <<<<<<<<<<<<<<
- *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=int32)
+ *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=np.int32)             # <<<<<<<<<<<<<<
+ *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=np.int32)
  *         cdef long sparse_data_pointer = 0
  */
   __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_np); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 143, __pyx_L1_error)
@@ -3913,7 +3913,7 @@ static PyObject *__pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity_2comput
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_np); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 143, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_np.int32); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 143, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_6) < 0) __PYX_ERR(0, 143, __pyx_L1_error)
@@ -3931,8 +3931,8 @@ static PyObject *__pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity_2comput
 
   /* "Cosine_Similarity_Cython.pyx":144
  *         cdef double[:] values = np.zeros((self.n_items*self.TopK))
- *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=int32)
- *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=int32)             # <<<<<<<<<<<<<<
+ *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=np.int32)
+ *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=np.int32)             # <<<<<<<<<<<<<<
  *         cdef long sparse_data_pointer = 0
  * 
  */
@@ -3957,7 +3957,7 @@ static PyObject *__pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity_2comput
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_np); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_int32); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_np.int32); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_dtype, __pyx_t_4) < 0) __PYX_ERR(0, 144, __pyx_L1_error)
@@ -3974,8 +3974,8 @@ static PyObject *__pyx_pf_24Cosine_Similarity_Cython_17Cosine_Similarity_2comput
   __pyx_t_7.data = NULL;
 
   /* "Cosine_Similarity_Cython.pyx":145
- *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=int32)
- *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=int32)
+ *         cdef int[:] rows = np.zeros((self.n_items*self.TopK,), dtype=np.int32)
+ *         cdef int[:] cols = np.zeros((self.n_items*self.TopK,), dtype=np.int32)
  *         cdef long sparse_data_pointer = 0             # <<<<<<<<<<<<<<
  * 
  * 
@@ -22554,7 +22554,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_indices, __pyx_k_indices, sizeof(__pyx_k_indices), 0, 0, 1, 1},
   {&__pyx_n_s_indptr, __pyx_k_indptr, sizeof(__pyx_k_indptr), 0, 0, 1, 1},
   {&__pyx_n_s_init, __pyx_k_init, sizeof(__pyx_k_init), 0, 0, 1, 1},
-  {&__pyx_n_s_int32, __pyx_k_int32, sizeof(__pyx_k_int32), 0, 0, 1, 1},
+  {&__pyx_n_s_np.int32, __pyx_k_np.int32, sizeof(__pyx_k_np.int32), 0, 0, 1, 1},
   {&__pyx_n_s_itemsize, __pyx_k_itemsize, sizeof(__pyx_k_itemsize), 0, 0, 1, 1},
   {&__pyx_kp_s_itemsize_0_for_cython_array, __pyx_k_itemsize_0_for_cython_array, sizeof(__pyx_k_itemsize_0_for_cython_array), 0, 0, 1, 0},
   {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
@@ -24394,7 +24394,7 @@ static void __Pyx_RaiseBufferIndexError(int axis) {
 static CYTHON_INLINE int __Pyx_Is_Little_Endian(void)
 {
   union {
-    uint32_t u32;
+    unp.int32_t u32;
     uint8_t u8[4];
   } S;
   S.u32 = 0x01020304;
