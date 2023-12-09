@@ -250,7 +250,7 @@ class MultVAERecommender(BaseRecommender, Incremental_Training_Early_Stopping, B
         if sparse.isspmatrix(URM_train_user_slice):
             URM_train_user_slice = URM_train_user_slice.toarray()
 
-        URM_train_user_slice = URM_train_user_slice.astype('np.float32')
+        URM_train_user_slice = URM_train_user_slice.astype('float32')
 
         item_scores_to_compute = self.sess.run(self.logits_var, feed_dict={self.vae.input_ph: URM_train_user_slice})
 
