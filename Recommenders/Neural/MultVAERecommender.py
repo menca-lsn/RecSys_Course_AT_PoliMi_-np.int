@@ -357,7 +357,7 @@ class MultVAERecommender(BaseRecommender, Incremental_Training_Early_Stopping, B
 
             if sparse.isspmatrix(X):
                 X = X.toarray()
-            X = X.astype('np.float32')
+            X = X.astype('float32')
 
             if self.total_anneal_steps > 0:
                 anneal = min(self.anneal_cap, 1. * self.update_count / self.total_anneal_steps)
