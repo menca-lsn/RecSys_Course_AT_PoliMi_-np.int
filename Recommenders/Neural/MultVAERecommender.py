@@ -43,7 +43,7 @@ class _MultDAE_original(object):
 
     def construct_placeholders(self):
         self.input_ph = tf.compat.v1.placeholder(
-            dtype=tf.np.float32, shape=[None, self.dims[0]])
+            dtype=tf.float32, shape=[None, self.dims[0]])
         self.keep_prob_ph = tf.compat.v1.placeholder_with_default(1.0, shape=None)
 
     def build_graph(self):
